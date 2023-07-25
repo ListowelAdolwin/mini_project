@@ -1,0 +1,1006 @@
+:root {
+  --color-main: #71c6dd;
+  --color-main-light: #e1f6fb;
+  --color-dark: #3f4156;
+  --color-dark-medium: #51546e;
+  --color-dark-light: #696d97;
+  --color-light: #e5e5e5;
+  --color-gray: #8b8b8b;
+  --color-light-gray: #b2bdbd;
+  --color-bg: #2d2d39;
+  --color-success: #5dd693;
+  --color-error: #fc4b0b;
+}
+* {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+body {
+  color: var(--color-light-gray);
+  background-color: #283542;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.btn-secondary {
+  background-color: #283542;
+}
+
+/** Assistant **/
+.assistant {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #283542;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  position: relative;
+
+  transition: all 0.2s linear;
+}
+
+.svgIcon {
+  width: 12px;
+}
+
+.svgIcon path {
+  fill: white;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 7em;
+  background-color: #283542;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 3px;
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  left: 110%;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #283542 transparent transparent;
+}
+
+.assistant:hover .tooltiptext {
+  visibility: visible;
+}
+/** Assistant end **/
+
+/** NAVBAR **/
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* this is a recreation of twitter search in css */
+.search-form {
+  --input-text-color: #fff;
+  --input-bg-color: #283542;
+  --focus-input-bg-color: transparent;
+  --text-color: #949faa;
+  --active-color: #1b9bee;
+  --width-of-input: 200px;
+  --inline-padding-of-input: 1.2em;
+  --gap: 0.9rem;
+}
+/* form style */
+.search-form {
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: var(--width-of-input);
+  position: relative;
+  isolation: isolate;
+}
+/* a fancy bg for showing background and border when focus. */
+.search-form .fancy-bg {
+  position: absolute;
+  width: 100%;
+  inset: 0;
+  background: var(--input-bg-color);
+  border-radius: 30px;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+/* label styling */
+.search-form label {
+  width: 100%;
+  padding: 0.8em;
+  height: 40px;
+  padding-inline: var(--inline-padding-of-input);
+  display: flex;
+  align-items: center;
+}
+
+.search-form .search,
+.close-btn {
+  position: absolute;
+}
+/* styling search-icon */
+.search {
+  fill: var(--text-color);
+  left: var(--inline-padding-of-input);
+}
+/* svg -- size */
+.search-form svg {
+  width: 17px;
+  display: block;
+}
+/* styling of close button */
+.close-btn {
+  border: none;
+  right: var(--inline-padding-of-input);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.1em;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--active-color);
+  opacity: 0;
+  visibility: hidden;
+}
+/* styling of input */
+.search-form .input {
+  color: var(--input-text-color);
+  width: 100%;
+  margin-inline: min(2em, calc(var(--inline-padding-of-input) + var(--gap)));
+  background: none;
+  border: none;
+}
+
+.search-form .input:focus {
+  outline: none;
+}
+
+.search-form .input::placeholder {
+  color: var(--text-color);
+}
+/* input background change in focus */
+.search-form .input:focus ~ .fancy-bg {
+  border: 1px solid var(--active-color);
+  background: var(--focus-input-bg-color);
+}
+/* search icon color change in focus */
+.search-form .input:focus ~ .search {
+  fill: var(--active-color);
+}
+/* showing close button when typing */
+.search-form .input:valid ~ .close-btn {
+  opacity: 1;
+  visibility: visible;
+}
+/* this is for the default background in input,when selecting autofill options -- you can remove this code if you do not want to override the browser style.  */
+.search-form input:-webkit-autofill,
+.search-form input:-webkit-autofill:hover,
+.search-form input:-webkit-autofill:focus,
+.search-form input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+  -webkit-transition-delay: 9999s;
+}
+
+/** Navbar ends **/
+/** Write Your Message Form **/
+.write-message-form {
+  position: fixed;
+  bottom: 0%;
+  left: 1%;
+  width: 73%;
+  background-color: #2d2d39;
+}
+
+.msg-bottom {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: 1fr 6fr 1fr;
+  align-items: center;
+  text-align: center;
+}
+
+.write-message-input-group-append button {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 18px;
+}
+
+.write-message-input-group-append {
+  background: transparent;
+}
+
+.write-message-input-group-append .fa {
+  color: aqua;
+}
+
+.write-message-form-control {
+  width: 100%;
+  padding: 10px;
+  border: none !important;
+  border-radius: 10px;
+  outline: none;
+  background-color: #46464f;
+  color: white;
+}
+
+.write-message-form-control:focus {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 10px;
+  background-color: #46464f;
+  color: white;
+}
+
+.bottom-icons {
+  font-size: 22px;
+}
+
+.room-post-image {
+  width: 30em;
+  height: auto;
+}
+
+.message-body {
+  margin-left: 60px;
+}
+
+.message-body a {
+  color: #a39292;
+  padding: 5px;
+}
+
+/*Icons Tooltip**/
+.icon-tooltip {
+  position: relative;
+}
+
+.icon-tooltip .icon-tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #51546e;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  right: -5%;
+  margin: 8px 0 0 0px;
+}
+
+.icon-tooltip:hover .icon-tooltiptext {
+  visibility: visible;
+}
+
+/** ROOM ***/
+.tooltiptext {
+  font-size: 1em;
+  color: #fff;
+  visibility: hidden;
+}
+
+.save-tooltip:hover .tooltiptext {
+  visibility: visible;
+  transition: 0.3s;
+}
+
+/* MIDDLE AND RIGHT CONTAINERS */
+
+.headerprofileimage {
+  margin-top: 10px;
+  position: relative;
+}
+
+#headerimage {
+  width: 45em;
+  height: 15em;
+  width: 100%;
+}
+
+#profilepic {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 130px;
+  left: 20px;
+  border: 4px solid rgb(21, 32, 43);
+}
+
+.editprofile {
+  margin-top: 5px;
+  float: right;
+  border: 1px solid rgb(155, 157, 160);
+  border-radius: 15px;
+  padding: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.bio {
+  margin-top: 55px;
+  margin-left: 20px;
+  line-height: 30px;
+  font-size: 15px;
+}
+
+.handle {
+  line-height: 19px;
+  margin-bottom: 10px;
+}
+
+.followers {
+  margin-right: 15px;
+}
+
+.nawa {
+  display: flex;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+  /** MAIN FEED DISPLAY ***/
+  .main-feed-display {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  a {
+    display: inline-block;
+    color: var(--color-main);
+    text-decoration: none;
+  }
+
+  /***NAV BAR ***/
+
+  .navbar {
+    margin-bottom: 200px;
+  }
+
+  .content {
+    padding-top: 100px;
+  }
+
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  /** TOPICS SECTION */
+  .topics-header {
+    margin-bottom: 2rem;
+  }
+
+  .topics-header h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-dark-light);
+  }
+
+  .center-form {
+    margin: 0 auto;
+  }
+
+  .room-list-container,
+  .activity-container,
+  .topic-container {
+    background-color: var(--color-dark);
+  }
+
+  .logo {
+    font-size: 25px;
+  }
+
+  .logo::before {
+    position: absolute;
+    content: "";
+    width: 50%;
+    background: #ababab;
+    height: 3px;
+    width: 50px;
+  }
+
+  /*** ROOM SECTION **/
+  .description-length {
+    padding-right: 100px;
+  }
+  .new-room {
+    display: none;
+  }
+
+  .create-new-room {
+    display: block;
+  }
+
+  .top-room-section {
+    display: flex;
+    margin-left: 1.6em;
+  }
+  .room-list-container {
+    width: 98%;
+    height: auto;
+  }
+
+  /** ACTIVITIES **/
+
+  .activities-header h3 {
+    background-color: var(--color-dark-light);
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    color: var(--color-light);
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .activity-message {
+    background-color: var(--color-bg);
+  }
+
+  .activity-conainer {
+    background-color: var(--color-dark);
+  }
+
+  /** UPDATE ROOM */
+
+  .update-room-form input {
+    background-color: #3f4156;
+  }
+
+  .update-room-form input,
+  .update-room-form textarea,
+  .update-room-form select {
+    background: #64646f;
+    border: 1px solid var(--color-dark-light);
+    border-radius: 3px;
+    color: var(--color-light);
+    margin-bottom: 10px;
+  }
+
+  /** CREATE ROOM **/
+  .create-room {
+    color: var(--color-light);
+    border: 1px solid var(--color-gray);
+    margin-left: 21.5em;
+  }
+
+  .top-container {
+    width: 550px;
+    width: 41%;
+    height: 50px;
+    background-color: rgb(54, 162, 162);
+    border-radius: 20px 20px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+  .back-icon {
+    margin: 10px -40px 20px 20px;
+    font-size: 22px;
+    color: white;
+  }
+
+  .create-room-title {
+    border: 0;
+    margin: auto;
+  }
+
+  .center-form label {
+    margin-bottom: 5px;
+  }
+
+  .form-container {
+    width: 41%;
+    height: auto;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+  }
+
+  /*** Login **/
+  .top-container-login {
+    width: 400px;
+    width: 35%;
+    height: 50px;
+    height: 10%;
+    background-color: rgb(54, 162, 162);
+    border-radius: 20px 20px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+  .form-container-login {
+    width: 400px;
+    width: 35%;
+    height: 500px;
+    height: 90%;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .center-form-login {
+    width: 300px;
+    width: 76%;
+
+    height: 400px;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+    color: white;
+    padding-top: 50px;
+  }
+
+  .center-form-login input {
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  /***Login Ends ***/
+
+  .center-form {
+    width: 75%;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+    color: white;
+    padding-bottom: 20px;
+  }
+
+  .center-form input,
+  .center-form textarea {
+    display: block;
+    width: 100%;
+    border-radius: 7px;
+    border: 0px;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  .center-form input,
+  .center-form textarea {
+    background-color: #373745;
+  }
+
+  input:focus {
+    border: 0;
+  }
+
+  /*** CONFIRM DELETE PAGE BEGINS**/
+  .delete-container {
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .center-delete {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    background-color: darkslategrey;
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .confirm-btn {
+    width: auto;
+    height: auto;
+    background-color: red;
+    margin: auto;
+  }
+
+  .go-back-btn {
+    width: auto;
+    height: auto;
+    background-color: #2f8968;
+    margin: auto;
+  }
+
+  .messges-wrapper {
+    background-color: #33333d;
+    width: 100%;
+  }
+  /*** CONFIRM DELETE PAGE ENDS ***/
+}
+
+/*** MOBILE VERSION ***/
+
+@media only screen and (max-width: 800px) {
+  .study-room {
+    display: block;
+  }
+
+  .create-room {
+    color: var(--color-light);
+    border: 1px solid var(--color-gray);
+  }
+
+  .study-room {
+    font-size: 15px;
+  }
+
+  .main-feed-display,
+  .room-mobile-display,
+  .mobile-room-wrapper {
+    width: 100%;
+  }
+
+  .room-list-container {
+    width: 98%;
+  }
+
+  a {
+    display: inline-block;
+    color: var(--color-main);
+    text-decoration: none;
+  }
+
+  /***NAV BAR ***/
+
+  .content {
+    padding-top: 100px;
+  }
+
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .center-form {
+    margin: 0 auto;
+  }
+
+  .room-list-container,
+  .activity-container,
+  .topic-container {
+    background-color: var(--color-dark);
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .logo::before {
+    position: absolute;
+    content: "";
+    width: 50%;
+    background: #ababab;
+    height: 2px;
+    width: 30px;
+  }
+
+  /*** ROOM SECTION ***/
+  .new-room {
+    display: block;
+  }
+
+  .create-new-room {
+    display: none;
+  }
+
+  .create-room {
+    color: var(--color-light);
+    border: 1px solid var(--color-gray);
+    margin-left: 3.3em;
+  }
+
+  .top-room-section {
+    display: flex;
+    font-size: small;
+  }
+  .room-mobile-display {
+    margin: auto;
+    font-size: 0.94em;
+  }
+
+  .mobile-room-name {
+    font-size: 20px;
+  }
+
+  .messages-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--color-dark) !important;
+  }
+
+  .mobile-message-form {
+    font-size: 15px;
+  }
+
+  .room-post-image {
+    width: 100%;
+    height: auto;
+  }
+
+  /** UPDATE ROOM */
+
+  .update-room-form input {
+    background-color: #3f4156;
+  }
+
+  .update-room-form input,
+  .update-room-form textarea,
+  .update-room-form select {
+    background: #64646f;
+    border: 1px solid var(--color-dark-light);
+    border-radius: 3px;
+    color: var(--color-light);
+    margin-bottom: 10px;
+  }
+
+  /** CREATE ROOM **/
+  .back-icon {
+    margin: 10px -40px 20px 20px;
+    font-size: 22px;
+    color: white;
+  }
+
+  .create-room-title {
+    border: 0;
+    margin: auto;
+  }
+
+  .center-form label {
+    margin-bottom: 5px;
+  }
+
+  /*** Login **/
+  .top-container-login {
+    width: 300px;
+    height: 40px;
+    background-color: rgb(54, 162, 162);
+    border-radius: 10px 10px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+  .form-container-login {
+    width: 300px;
+    height: 400px;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .center-form-login {
+    width: 150px;
+    height: 200px;
+    padding: 7px;
+    margin: auto;
+    color: white;
+    padding-top: 30px;
+  }
+
+  .center-form-login input {
+    display: block;
+    width: 150px;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 15px;
+    padding: 7px;
+    margin-bottom: 7px;
+    color: white;
+  }
+
+  /***Login Ends ***/
+  .top-container {
+    width: 300px;
+    width: 85%;
+    height: 40px;
+    height: auto;
+    background-color: rgb(54, 162, 162);
+    border-radius: 10px 10px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+  .form-container {
+    width: 300px;
+    width: 85%;
+    height: 700px;
+    height: min-content;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .center-form {
+    width: 200px;
+    width: 85%;
+    height: 200px;
+    height: auto;
+    padding: 7px;
+    margin: auto;
+    color: white;
+    padding-top: 30px;
+  }
+
+  .center-form input,
+  .center-form textarea {
+    display: block;
+    width: 200px;
+    width: 100%;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 12px;
+    padding: 7px;
+    margin-bottom: 7px;
+    color: white;
+  }
+
+  .center-form input,
+  .center-form textarea {
+    background-color: #373745;
+  }
+
+  input:focus {
+    border: 0;
+  }
+
+  /*** CONFIRM DELETE PAGE BEGINS**/
+  .delete-container {
+    width: 85%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .center-delete {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    background-color: darkslategrey;
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .confirm-btn {
+    width: auto;
+    height: auto;
+    background-color: red;
+    margin: auto;
+  }
+
+  .go-back-btn {
+    width: auto;
+    height: auto;
+    background-color: #2f8968;
+    margin: auto;
+  }
+  /*** CONFIRM DELETE PAGE ENDS ***/
+
+  /** Write Your Message Form **/
+  .write-message-form {
+    position: fixed;
+    bottom: 0%;
+    left: 2%;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .write-message-form input {
+    width: 95%;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    background-color: #2d2d39;
+    color: white;
+  }
+
+  .message-body {
+    margin-left: 10px;
+  }
+
+  /* MIDDLE AND RIGHT CONTAINERS */
+
+  .flexcontainer {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .middlecontainer {
+    width: 100%;
+    height: 100%;
+  }
+
+  .headerprofileimage {
+    margin-top: 10px;
+    position: relative;
+  }
+
+  #headerimage {
+    height: 10em;
+    width: 100%;
+  }
+
+  #profilepic {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    border: 4px solid rgb(21, 32, 43);
+  }
+
+  .editprofile {
+    margin-top: 10px;
+    float: right;
+    border: 1px solid rgb(155, 157, 160);
+    border-radius: 13px;
+    padding: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .bio {
+    margin-top: 55px;
+    margin-left: 20px;
+    line-height: 30px;
+    font-size: 15px;
+  }
+
+  .handle {
+    line-height: 19px;
+    margin-bottom: 10px;
+  }
+
+  .followers {
+    margin-right: 15px;
+  }
+
+  .nawa {
+    display: flex;
+  }
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+}
