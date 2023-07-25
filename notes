@@ -1,0 +1,26 @@
+DYNAMIC ROUTING
+1. This is when you to get to one object by clicking somthing, but don't want to create an entire url for that.
+    To make this possible, we pass a dynamic value to the url path. This value determines which particular object is valid at anytime.
+    For instance, in the studymate case, we pass the id of each room to the url.
+
+2. Django builds some default database tables for us. We only need to run 'python manage migrate' to activate them.
+
+2. Anytime you create a model(a db table), register it at the admin.py to make it availbale at your admin panel
+
+3. Models is where database tables are created(using ORM)
+
+4. Django Forms. In Django, even though you can create a form from scratch, there are form templates you can create based on your database tables to make things easier and simpler.
+
+5. Django search can be made more efficient by using 'django-filters'
+
+6. Search functionality
+
+7. Flash messages gave me troubles
+
+8. Access the python API and play with it with 'python manage.py shell'
+
+9. Had a problem with datetime (fromisoformat: argument must be str). Realized it was caused by the created's DateTimeField.
+
+10. Many to many relationship
+
+11. Holding ALT and left clicking on multiple lines allows you type of them at the same time

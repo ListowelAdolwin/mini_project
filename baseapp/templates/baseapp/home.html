@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+
+<style>
+
+
+</style>
+
+
+<div class="mx-0 ">
+  <div class="row">
+    <!--TOPICS-->
+    <div class="col-2 main-feed-display d-none d-md-block">
+      {% include 'baseapp/topic_component.html' %}
+    </div>
+
+    <!--HOME FEED-->
+    <div class="col-7 main-feed-display">
+      <div class="top-room-section">
+        <span class="study-room">
+          <h2>Study Rooms</h2>
+          <small>{{room_count}} Room{{room_count | pluralize}} Found</small>
+        </span class=''>
+        <span class="new-room">
+          <a class="create-room btn mt-3" href="{% url 'create_room' %}"><i class="bi bi-plus-lg"></i>New Room</a>
+        </span>
+
+        <span class="create-new-room">
+          <a class="create-room btn mt-3" href="{% url 'create_room' %}"><i class="bi bi-plus-lg"></i>Create New
+            Room</a>
+        </span>
+        <br>
+      </div>
+      {% include 'baseapp/home_feed.html' %}
+    </div>
+
+    <!--RECENT ACTIVITIES-->
+    <div class="col-3 main-feed-display d-none d-md-block ">
+      {% include 'baseapp/activities_component.html' %}
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock content %}
