@@ -11,6 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from openai import ChatCompletion
 import openai
+from .secrets import api_key
 # Chatbot starts
 
 
@@ -34,7 +35,7 @@ def chatbot_view(request):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=prompts,
-            api_key="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"
+            api_key=api_key
         )
         print(response)
         # Extract chatbot replies from the response
