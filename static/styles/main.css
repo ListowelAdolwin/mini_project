@@ -12,7 +12,7 @@
   --color-error: #fc4b0b;
 }
 * {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 body {
   color: var(--color-light-gray);
