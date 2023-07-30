@@ -16,7 +16,7 @@
         width: 90%;
     }
 
-    .chat-container textarea {
+    .chat-container input {
         flex: 1;
         margin-right: 10px;
         font-size: 16px;
@@ -59,7 +59,7 @@
         display: flex;
     }
 
-    .chat-form textarea {
+    .chat-form input {
         color: #fff;
         width: 100%;
         background: none;
@@ -100,8 +100,9 @@
         <form id="chat-form" method="POST" action="{% url 'chatbot' %}">
             {% csrf_token %}
             <div class="chat-container ms-2">
-                <textarea rows="1" class="centered-textarea" id="user-input" type="text" name="user_input"
-                    placeholder="Ask your questions here"></textarea>
+                <input class="centered-textarea" id="user-input" type="text" name="user_input"
+                    placeholder="Ask your questions here">
+                </input>
                 <span class="write-message-input-group-append mt-3">
                     <button type="submit">
                         <i class="fa fa-paper-plane"></i>
