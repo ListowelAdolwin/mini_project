@@ -62,7 +62,7 @@
         <div class="messages-wrapper p-3">
             <h2>Conversation</h2>
             {% for message in room_messages %}
-            <div>
+            <div id="new-message">
 
                 <small class="">
                     {% if message.user.profile.avatar %}
@@ -232,7 +232,10 @@
         {% endfor %}
     </div>
 </div>
-
+<!-- Send variables to the scripts
+ -->
+{{ rooms.id|json_script:"json-chatroomname" }}
+{{ request.user.username|json_script:"json-username" }}
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -328,8 +331,52 @@
 
     });
 
+</script>
+<script>
+    const chatRoomId = JSON.parse(document.getElementById('json-chatroomid').textContent)
+    const username = JSON.parse(document.getElementById('json-username').textContent)
+
+    let url = `ws://${window.location.host}/ws/room/${chatRoomId}/`
+    const chatSocket = new WebSocket(url)
+
+    chatSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data)
+        if (data.message) {
+            let html = '<div class="message shadow-lg p-3 m-3 rounded-lg w-1/2 bg-blue-300">' +
+                '<div class="text-sm text-gray-500">' +
+                data.username + ' </div> ' + data.message + '<div class="text-sm text-gray-500">' + 'Now' + '</div>'
+            document.getElementById('chat-messages').innerHTML += html
+            scroll()
+        } else {
+            alert('The message was empty')
+        }
+    }
+    chatSocket.onclose = function (e) {
+        console.log('Socket closed')
+    }
+
+    document.getElementById('send-button').onclick = function (e) {
+        e.preventDefault()
+        const messageInput = document.getElementById('message-input')
+        const message = messageInput.value
 
 
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': username,
+            'room': chatRoomName
+
+        }))
+        messageInput.value = ""
+    }
+
+         function scroll(){
+            const mcontainer = document.getElementById('message-container')
+            mcontainer.scrollTop = mcontainer.scrollHeight
+
+        }
+
+        scoll()
 </script>
 
 {% endblock scripts %}
