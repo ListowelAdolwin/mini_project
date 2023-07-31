@@ -59,91 +59,93 @@
         <hr>
         <br>
 
-        <div class="messages-wrapper p-3">
+        <div class="messages-wrapper p-3" id="newMessageContainer">
             <h2>Conversation</h2>
-            {% for message in room_messages %}
-            <div id="new-message">
+            <div id="newMessageContainer">
+                {% for message in room_messages %}
+                <div id="new-message">
+                    <small class="">
+                        {% if message.user.profile.avatar %}
+                        <img src="{{message.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                        {% else %}
+                        <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                        {% endif %}
+                        <a class="ms-3" href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a>
+                        &nbsp;&nbsp; {{message.updated|timesince}} ago
+                    </small>
+                    <div class="message-body">
+                        <p class="mt-1">
+                            {{message.body|linebreaks}}
+                        </p>
+                        <div class="pb-1 room-post-image">
+                            {% if message.image %}
+                            <a href="{{message.image.url}}"><img class="room-post-image" src="{{message.image.url}}"
+                                    alt="Post"></a>
+                            {% endif %}
+                        </div>
+                        <div class="">
+                            <span class="icon-tooltip">
+                                <a save_id="{{message.id}}" class="save-button" href="{% url 'save' message.id %}">
+                                    <i id="bookmark{{message.id}}" class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                </a>
+                                <small class="icon-tooltiptext">
+                                    Save
+                                </small>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span class="icon-tooltip">
+                                <a like_id="{{message.id}}" class="like-button" href="{% url 'likes' message.id %}">
+                                    <?xml version="1.0" ?>
+                                    <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z "
+                                            fill="#A39292" class="fill-000000" />
+                                    </svg>
+                                    &nbsp;<small><span id="like-button{{message.id}}"
+                                            class="text-white">{{message.likes}}</span></small>
+                                </a>
+                                <small class="icon-tooltiptext">
+                                    Upvote
+                                </small>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span class="icon-tooltip">
+                                <a dislike_id="{{message.id}}" class="dislike-button"
+                                    href="{% url 'dislike' message.id %}">
+                                    <?xml version="1.0" ?>
+                                    <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"
+                                            fill="#A39292" class="fill-000000" />
+                                    </svg>
+                                    &nbsp;<small><span id="dislike-button{{message.id}}"
+                                            class="text-white">{{message.dislikes}}</span></small>
+                                </a>
+                                <small class="icon-tooltiptext">
+                                    Downvote
+                                </small>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span class="icon-tooltip">
+                                {% if message.user == request.user %}
+                                <a class="" href="{% url 'delete-message' message.id %}">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    <!--&nbsp;<small>delete</small>-->
+                                </a>
+                                <small class="icon-tooltiptext container">
+                                    Delete
+                                </small>
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
 
-                <small class="">
-                    {% if message.user.profile.avatar %}
-                    <img src="{{message.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
-                    {% else %}
-                    <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
-                    {% endif %}
-                    <a class="ms-3" href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a>
-                    &nbsp;&nbsp; {{message.updated|timesince}} ago
-                </small>
-                <div class="message-body">
-                    <p class="mt-1">
-                        {{message.body|linebreaks}}
-                    </p>
-                    <div class="pb-1 room-post-image">
-                        {% if message.image %}
-                        <a href="{{message.image.url}}"><img class="room-post-image" src="{{message.image.url}}"
-                                alt="Post"></a>
-                        {% endif %}
-                    </div>
-                    <div class="">
-                        <span class="icon-tooltip">
-                            <a save_id="{{message.id}}" class="save-button" href="{% url 'save' message.id %}">
-                                <i id="bookmark{{message.id}}" class="fa fa-bookmark-o" aria-hidden="true"></i>
-                            </a>
-                            <small class="icon-tooltiptext">
-                                Save
-                            </small>
-                        </span>
-                        &nbsp;&nbsp;
-                        <span class="icon-tooltip">
-                            <a like_id="{{message.id}}" class="like-button" href="{% url 'likes' message.id %}">
-                                <?xml version="1.0" ?>
-                                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z "
-                                        fill="#A39292" class="fill-000000" />
-                                </svg>
-                                &nbsp;<small><span id="like-button{{message.id}}"
-                                        class="text-white">{{message.likes}}</span></small>
-                            </a>
-                            <small class="icon-tooltiptext">
-                                Upvote
-                            </small>
-                        </span>
-                        &nbsp;&nbsp;
-                        <span class="icon-tooltip">
-                            <a dislike_id="{{message.id}}" class="dislike-button" href="{% url 'dislike' message.id %}">
-                                <?xml version="1.0" ?>
-                                <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"
-                                        fill="#A39292" class="fill-000000" />
-                                </svg>
-                                &nbsp;<small><span id="dislike-button{{message.id}}"
-                                        class="text-white">{{message.dislikes}}</span></small>
-                            </a>
-                            <small class="icon-tooltiptext">
-                                Downvote
-                            </small>
-                        </span>
-                        &nbsp;&nbsp;
-                        <span class="icon-tooltip">
-                            {% if message.user == request.user %}
-                            <a class="" href="{% url 'delete-message' message.id %}">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                <!--&nbsp;<small>delete</small>-->
-                            </a>
-                            <small class="icon-tooltiptext container">
-                                Delete
-                            </small>
-                        </span>
-                        {% endif %}
-                    </div>
                 </div>
-
+                <hr>
+                {% endfor %}
             </div>
-            <hr>
 
-            {% endfor %}
             <!-- Button trigger modal -->
 
             <!-- Modal -->
@@ -169,11 +171,11 @@
                         </label>
                     </span>
                     <span class="mt-1">
-                        <textarea class="write-message-form-control" name="body" rows="1"
+                        <textarea id="message-input" class="write-message-form-control" name="body" rows="1"
                             placeholder='Write your message'></textarea>
                     </span>
                     <span class="write-message-input-group-append">
-                        <button type="submit">
+                        <button type="submit" id="send-button">
                             <i class="fa fa-paper-plane"></i>
                         </button>
                     </span>
@@ -234,8 +236,11 @@
 </div>
 <!-- Send variables to the scripts
  -->
-{{ rooms.id|json_script:"json-chatroomname" }}
+{{ rooms.id|json_script:"json-chatroomid" }}
 {{ request.user.username|json_script:"json-username" }}
+<!-- {{ request.user|json_script:"json-user" }}
+ -->
+
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -335,17 +340,36 @@
 <script>
     const chatRoomId = JSON.parse(document.getElementById('json-chatroomid').textContent)
     const username = JSON.parse(document.getElementById('json-username').textContent)
-
+/*     const user = JSON.parse(document.getElementById('json-user').textContent)
+ */    alert(user)
     let url = `ws://${window.location.host}/ws/room/${chatRoomId}/`
     const chatSocket = new WebSocket(url)
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data)
         if (data.message) {
-            let html = '<div class="message shadow-lg p-3 m-3 rounded-lg w-1/2 bg-blue-300">' +
-                '<div class="text-sm text-gray-500">' +
-                data.username + ' </div> ' + data.message + '<div class="text-sm text-gray-500">' + 'Now' + '</div>'
-            document.getElementById('chat-messages').innerHTML += html
+            alert(data.message.user.profile)
+            let newMessageContainer = document.getElementById('newMessageContainer');
+
+            // Create a new message element
+            let newMessage = document.createElement('div');
+            newMessage.innerHTML = `<div>
+                                <small class="">
+                                    <a class="ms-3" href="">@${data.username}</a>
+                                    &nbsp;&nbsp; Now
+                                </small>
+                                <div class="message-body">
+                                    <p class="mt-1">
+                                        ${data.message}
+                                    </p>
+                                </div>
+                            </div>`;
+
+            // Insert the new message at the top of the container
+            newMessageContainer.insertBefore(newMessage, newMessageContainer.firstChild);
+
+            // Scroll to the top of the chat area to show the new message
+            newMessageContainer.scrollTop = 0;
             scroll()
         } else {
             alert('The message was empty')
@@ -364,19 +388,19 @@
         chatSocket.send(JSON.stringify({
             'message': message,
             'username': username,
-            'room': chatRoomName
+            'room': chatRoomId
 
         }))
         messageInput.value = ""
     }
 
-         function scroll(){
-            const mcontainer = document.getElementById('message-container')
-            mcontainer.scrollTop = mcontainer.scrollHeight
+    function scroll() {
+        const mcontainer = document.getElementById('message-container')
+        mcontainer.scrollTop = mcontainer.scrollHeight
 
-        }
+    }
 
-        scoll()
+    scoll()
 </script>
 
 {% endblock scripts %}
