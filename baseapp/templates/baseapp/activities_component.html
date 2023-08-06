@@ -3,7 +3,7 @@
 <div class="">
     <div class="activities-header">
         <h3>
-            Recent Activities
+            Updates
         </h3>
     </div>
     <!--Display recent activities at the home page-->
@@ -30,7 +30,7 @@
 
             <!--message owners should be able to delete their messages from the 'recent activities'-->
             {% if message.user == request.user %}
-<!--             <div>
+            <!--             <div>
                 <a href="{% url 'delete-message' message.id %}"><i class="bi bi-trash"></i></a>
             </div> -->
             {% endif %}

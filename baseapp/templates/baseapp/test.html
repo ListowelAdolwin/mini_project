@@ -1,0 +1,47 @@
+<div class="message-body">
+    <p class="mt-1">
+        ${data.message}
+    </p>
+    <div class="">
+        <span class="icon-tooltip">
+            <a save_id="${data.message_id}" class="save-button" href="{% url 'save' 4 %}">
+                <i id="bookmark${data.message_id}" class="fa fa-bookmark-o" aria-hidden="true"></i>
+            </a>
+            <small class="icon-tooltiptext">
+                Save
+            </small>
+        </span>
+        &nbsp;&nbsp;
+        <span class="icon-tooltip">
+            <a like_id="${data.message_id}" class="like-button" href="{% url 'likes' 4 %}">
+                <?xml version="1.0" ?>
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z "
+                        fill="#A39292" class="fill-000000" />
+                </svg>
+                &nbsp;<small><span id="like-button${data.message_id}" class="text-white">0</span></small>
+            </a>
+            <small class="icon-tooltiptext">
+                Upvote
+            </small>
+        </span>
+        &nbsp;&nbsp;
+        <span class="icon-tooltip">
+            <a dislike_id="${data.message_id}" class="dislike-button" href="{% url 'dislike' 4 %}">
+                <?xml version="1.0" ?>
+                <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"
+                        fill="#A39292" class="fill-000000" />
+                </svg>
+                &nbsp;<small><span id="dislike-button${data.message_id}" class="text-white">0</span></small>
+            </a>
+            <small class="icon-tooltiptext">
+                Downvote
+            </small>
+        </span>
+        &nbsp;&nbsp;
+    </div>
+</div>
