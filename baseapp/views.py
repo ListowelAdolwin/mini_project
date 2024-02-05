@@ -152,7 +152,7 @@ def edit_profile(request):
             profile.save()
             request.user.save()
             form.save()
-            return redirect('home')
+            return redirect('user-profile', pk=request.user.id)
 
     context = {'form': form}
     return render(request, 'baseapp/update_profile.html', context)
@@ -267,7 +267,7 @@ def update_room(request, pk):
         room.description = request.POST.get('description')
         room.save()
 
-        return redirect('home')
+        return redirect('room', pk=room.id)
 
     context = {
         'form': form,
